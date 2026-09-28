@@ -1,0 +1,1424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#111112" />
+  <link rel="icon" href="data:," />
+  <title>DigitalStudioz Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #101011;
+      --bg-deep: #080809;
+      --surface: rgba(29, 29, 31, 0.74);
+      --surface-strong: rgba(35, 35, 38, 0.94);
+      --text: #f4f1eb;
+      --muted: #bbb6ae;
+      --faint: #918b82;
+      --line: rgba(255, 255, 255, 0.1);
+      --line-strong: rgba(255, 255, 255, 0.18);
+      --red: #ef5358;
+      --red-soft: rgba(239, 83, 88, 0.13);
+      --gold: #e5ae55;
+      --gold-soft: rgba(229, 174, 85, 0.13);
+      --green: #62bd8d;
+      --green-soft: rgba(98, 189, 141, 0.12);
+      --slate: #a9b1bd;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+      --focus: #e5ae55;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #1a1a1c;
+        --bg-deep: #111113;
+        --surface: rgba(40, 40, 43, 0.78);
+        --surface-strong: rgba(48, 48, 51, 0.96);
+        --text: #fffdf8;
+        --muted: #cbc5bb;
+        --faint: #9d968d;
+        --line: rgba(255, 255, 255, 0.11);
+        --line-strong: rgba(255, 255, 255, 0.2);
+        --red: #f25b60;
+        --red-soft: rgba(242, 91, 96, 0.13);
+        --gold: #efb95f;
+        --gold-soft: rgba(239, 185, 95, 0.13);
+        --green: #72c99c;
+        --green-soft: rgba(114, 201, 156, 0.12);
+        --slate: #b6beca;
+        --shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+        --focus: #efb95f;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-width: 320px; background: var(--bg-deep); }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(135deg, transparent 0 49.5%, var(--line) 49.5% 50.5%, transparent 50.5% 100%) 0 0 / 44px 44px,
+        radial-gradient(circle at 9% -12%, var(--red-soft), transparent 34%),
+        radial-gradient(circle at 92% 2%, var(--gold-soft), transparent 28%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 68px 0 34px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      align-items: stretch;
+      gap: 32px;
+      padding: 6px 2px 36px;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .intro-copy {
+      align-self: end;
+      max-width: 760px;
+    }
+
+    .intro-side {
+      display: grid;
+      align-content: end;
+      gap: 12px;
+    }
+
+    .ambient {
+      position: relative;
+      min-height: 190px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 72% 28%, rgba(229, 174, 85, 0.18), transparent 27%),
+        radial-gradient(circle at 28% 74%, rgba(239, 83, 88, 0.2), transparent 31%),
+        rgba(15, 15, 17, 0.7);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .ambient svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ambient-orbit {
+      transform-origin: 145px 95px;
+      animation: orbit 22s linear infinite;
+    }
+
+    @keyframes orbit { to { transform: rotate(360deg); } }
+
+    .edition {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--gold);
+      font: 500 0.76rem/1.3 "IBM Plex Mono", monospace;
+      letter-spacing: 0.045em;
+    }
+
+    .edition::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--red);
+      border-radius: 999px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 700px;
+      font-size: clamp(2.25rem, 5.8vw, 4.55rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      font-weight: 650;
+    }
+
+    .lede {
+      max-width: 650px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.65;
+    }
+
+    .summary {
+      width: 100%;
+      min-width: 164px;
+      padding: 17px 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .summary-number {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--red);
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .summary-label {
+      color: var(--muted);
+      font: 500 0.74rem/1.45 "IBM Plex Mono", monospace;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 22px 0 8px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .view-switch {
+      display: inline-flex;
+      padding: 3px;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      background: rgba(8, 8, 9, 0.34);
+    }
+
+    .view-button {
+      appearance: none;
+      border: 0;
+      border-radius: 7px;
+      padding: 7px 10px;
+      background: transparent;
+      color: var(--faint);
+      font: 600 0.72rem/1 "Manrope", sans-serif;
+      cursor: pointer;
+      transition: color 160ms ease, background 160ms ease;
+    }
+
+    .view-button:hover { color: var(--text); }
+    .view-button[aria-pressed="true"] { color: var(--text); background: var(--surface-strong); }
+
+    .status-band {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 9px;
+      padding: 14px 0 2px;
+    }
+
+    .status-stat {
+      position: relative;
+      min-width: 0;
+      padding: 13px 15px 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(29, 29, 31, 0.56);
+    }
+
+    .status-stat::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 2px;
+      background: var(--status-color);
+      opacity: 0.82;
+    }
+
+    .status-stat-number {
+      display: block;
+      color: var(--status-color);
+      font-size: 1.35rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+    }
+
+    .status-stat-label {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font: 500 0.67rem/1 "IBM Plex Mono", monospace;
+      text-transform: capitalize;
+    }
+
+    .filter-label {
+      margin-right: 4px;
+      color: var(--faint);
+      font: 500 0.7rem/1 "IBM Plex Mono", monospace;
+    }
+
+    .filter-button {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--surface);
+      color: var(--muted);
+      font: 600 0.76rem/1 "Manrope", sans-serif;
+      cursor: pointer;
+      transition: border-color 160ms ease, color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+
+    .filter-button:hover { border-color: var(--line-strong); color: var(--text); transform: translateY(-1px); }
+
+    .filter-count {
+      min-width: 18px;
+      padding: 2px 5px;
+      border-radius: 999px;
+      background: rgba(127, 127, 127, 0.12);
+      color: var(--faint);
+      font: 500 0.62rem/1 "IBM Plex Mono", monospace;
+      text-align: center;
+    }
+
+    .command-trigger {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: var(--surface-strong);
+      color: var(--text);
+      font: 600 0.76rem/1 "Manrope", sans-serif;
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .command-trigger:hover { border-color: var(--gold); background: var(--surface); }
+    .command-trigger svg { width: 14px; height: 14px; color: var(--gold); }
+
+    kbd {
+      min-width: 28px;
+      padding: 3px 6px;
+      border: 1px solid var(--line);
+      border-bottom-color: var(--line-strong);
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--muted);
+      font: 500 0.62rem/1 "IBM Plex Mono", monospace;
+      text-align: center;
+    }
+
+    .filter-button:hover { border-color: var(--line-strong); color: var(--text); }
+    .filter-button[aria-pressed="true"] { color: var(--text); background: var(--surface-strong); border-color: var(--gold); }
+    .filter-button:focus-visible, .view-button:focus-visible, .project-link:focus-visible, .command-trigger:focus-visible,
+    .command-close:focus-visible, .command-input:focus-visible, .scope-field select:focus-visible,
+    .command-option:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 55%, transparent);
+      outline-offset: 3px;
+    }
+
+    .directory { padding-top: 20px; }
+
+    .section {
+      margin-top: 42px;
+    }
+
+    .section:first-child { margin-top: 12px; }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 14px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title-count {
+      color: var(--gold);
+      font: 500 0.78rem/1 "IBM Plex Mono", monospace;
+      letter-spacing: 0;
+    }
+
+    .section-count {
+      color: var(--faint);
+      font: 500 0.72rem/1 "IBM Plex Mono", monospace;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project {
+      position: relative;
+      display: flex;
+      min-height: 224px;
+      flex-direction: column;
+      padding: 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 22px;
+      width: 42px;
+      height: 3px;
+      border-radius: 0 0 3px 3px;
+      background: var(--status-color, var(--slate));
+    }
+
+    .project.openable:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      background: var(--surface-strong);
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 24px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--muted);
+      background: rgba(127, 127, 127, 0.045);
+      font: 500 0.66rem/1 "IBM Plex Mono", monospace;
+    }
+
+    .badge.status { color: var(--status-color); border-color: color-mix(in srgb, var(--status-color) 34%, transparent); }
+
+    .card-index {
+      color: var(--faint);
+      font: 500 0.67rem/1 "IBM Plex Mono", monospace;
+    }
+
+    .project-visual {
+      position: relative;
+      height: 112px;
+      margin: -8px 0 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background:
+        linear-gradient(125deg, rgba(239, 83, 88, 0.08), transparent 42%),
+        linear-gradient(305deg, rgba(229, 174, 85, 0.08), transparent 46%),
+        rgba(8, 8, 9, 0.58);
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--status-color), transparent);
+      opacity: 0.6;
+    }
+
+    .project-visual svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transition: transform 360ms cubic-bezier(.2,.75,.25,1), filter 220ms ease;
+    }
+
+    .project.openable:hover .project-visual svg {
+      transform: scale(1.035) rotate(-0.5deg);
+      filter: saturate(1.12);
+    }
+
+    .project-main { min-width: 0; }
+
+    .project-title {
+      margin: 0;
+      font-size: clamp(1.25rem, 2vw, 1.55rem);
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      font-weight: 650;
+    }
+
+    .project-description {
+      margin: 10px 0 24px;
+      color: var(--muted);
+      font-size: 0.91rem;
+      line-height: 1.55;
+    }
+
+    .project-context {
+      margin: -10px 0 24px;
+      color: var(--faint);
+      font: 500 0.69rem/1.55 "IBM Plex Mono", monospace;
+    }
+
+    .project.leaderboard { grid-column: 1 / -1; }
+
+    .project.leaderboard .project-visual { height: 94px; }
+
+    .leaderboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: -4px 0 24px;
+    }
+
+    .model-board {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(8, 8, 9, 0.34);
+    }
+
+    .model-board-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 10px;
+      color: var(--text);
+      font-size: 0.79rem;
+      font-weight: 650;
+    }
+
+    .model-board-title span {
+      color: var(--faint);
+      font: 500 0.61rem/1 "IBM Plex Mono", monospace;
+    }
+
+    .model-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .model-row {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 0.72fr) minmax(0, 1.28fr);
+      gap: 9px;
+      align-items: baseline;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .model-rank { color: var(--gold); font: 500 0.64rem/1.4 "IBM Plex Mono", monospace; }
+    .model-name { color: var(--text); font-size: 0.76rem; font-weight: 650; }
+    .model-note { color: var(--faint); font: 400 0.64rem/1.45 "IBM Plex Mono", monospace; }
+    .model-row.open .model-name, .model-row.open .model-note { color: var(--faint); }
+
+    .retired-line {
+      margin: -10px 0 24px;
+      color: var(--faint);
+      font: 400 0.64rem/1.5 "IBM Plex Mono", monospace;
+    }
+
+    .retired-line strong { color: var(--muted); font-weight: 500; }
+
+    .project-bottom {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: auto;
+      padding-top: 17px;
+      border-top: 1px solid var(--line);
+    }
+
+    .meta { min-width: 0; }
+
+    .meta-line {
+      display: flex;
+      gap: 6px;
+      color: var(--faint);
+      font: 400 0.68rem/1.5 "IBM Plex Mono", monospace;
+    }
+
+    .meta-line strong { color: var(--muted); font-weight: 500; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 7px;
+    }
+
+    .tag {
+      color: var(--faint);
+      font: 400 0.64rem/1.25 "IBM Plex Mono", monospace;
+    }
+
+    .tag:not(:last-child)::after { content: " /"; color: var(--line-strong); }
+
+    .project-link {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 700;
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .project-link:hover { background: var(--red); color: #fff; }
+    .project-link svg { width: 14px; height: 14px; }
+
+    .private-note {
+      max-width: 120px;
+      color: var(--faint);
+      text-align: right;
+      font: 500 0.66rem/1.4 "IBM Plex Mono", monospace;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 22px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 14px;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--surface) 55%, transparent);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .empty-state strong { color: var(--text); font-weight: 650; }
+
+    .directory.view-list .grid { grid-template-columns: 1fr; gap: 8px; }
+
+    .directory.view-list .project {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.78fr) minmax(260px, 1.7fr) minmax(190px, 1fr) auto;
+      align-items: center;
+      gap: 18px;
+      min-height: 0;
+      padding: 15px 18px;
+      border-radius: 13px;
+    }
+
+    .directory.view-list .project::after { left: 18px; width: 34px; }
+    .directory.view-list .project.leaderboard { grid-column: auto; }
+    .directory.view-list .project-top { margin: 0; }
+    .directory.view-list .project-visual,
+    .directory.view-list .project-context,
+    .directory.view-list .leaderboard-grid,
+    .directory.view-list .retired-line { display: none; }
+    .directory.view-list .project-title { font-size: 1rem; letter-spacing: -0.02em; }
+    .directory.view-list .project-description { margin: 5px 0 0; font-size: 0.78rem; line-height: 1.45; }
+    .directory.view-list .project-bottom { display: contents; }
+    .directory.view-list .meta { align-self: center; }
+    .directory.view-list .project-link,
+    .directory.view-list .private-note { align-self: center; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 68px;
+      padding: 24px 2px 12px;
+      border-top: 1px solid var(--line-strong);
+      color: var(--faint);
+      font: 400 0.7rem/1.5 "IBM Plex Mono", monospace;
+    }
+
+    .palette-backdrop {
+      position: fixed;
+      z-index: 50;
+      inset: 0;
+      display: grid;
+      place-items: start center;
+      padding: min(14vh, 110px) 18px 24px;
+      background: rgba(5, 5, 6, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .command-panel {
+      width: min(680px, 100%);
+      max-height: min(72vh, 670px);
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+      background: rgba(24, 24, 26, 0.98);
+      box-shadow: 0 32px 100px rgba(0, 0, 0, 0.6);
+    }
+
+    .command-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .command-head svg { width: 18px; height: 18px; color: var(--gold); flex: 0 0 auto; }
+
+    .command-input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font: 500 1rem/1.4 "Manrope", sans-serif;
+    }
+
+    .command-input::placeholder { color: var(--faint); }
+
+    .command-close {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 6px 8px;
+      background: transparent;
+      color: var(--muted);
+      font: 500 0.66rem/1 "IBM Plex Mono", monospace;
+      cursor: pointer;
+    }
+
+    .command-scopes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .scope-field { display: grid; gap: 6px; }
+    .scope-field span { color: var(--faint); font: 500 0.62rem/1 "IBM Plex Mono", monospace; }
+
+    .scope-field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 10px;
+      background: #1d1d1f;
+      color: var(--text);
+      font: 500 0.76rem/1 "Manrope", sans-serif;
+    }
+
+    .command-results {
+      max-height: min(43vh, 390px);
+      margin: 0;
+      padding: 7px;
+      overflow-y: auto;
+      list-style: none;
+    }
+
+    .command-option {
+      appearance: none;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      width: 100%;
+      gap: 6px 16px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 11px 12px;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .command-option[aria-selected="true"], .command-option:hover {
+      border-color: var(--line);
+      background: var(--surface-strong);
+    }
+
+    .command-option-title { font-size: 0.88rem; font-weight: 650; }
+    .command-option-section { color: var(--faint); font: 500 0.64rem/1.4 "IBM Plex Mono", monospace; }
+    .command-option-status { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: var(--gold); font: 500 0.65rem/1 "IBM Plex Mono", monospace; }
+
+    .command-empty { padding: 26px 18px; color: var(--muted); text-align: center; font-size: 0.84rem; }
+
+    .command-foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 10px 14px 12px;
+      border-top: 1px solid var(--line);
+      color: var(--faint);
+      font: 400 0.62rem/1.4 "IBM Plex Mono", monospace;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 26px, 620px); padding-top: 40px; }
+      .status-band { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .intro { grid-template-columns: 1fr; gap: 24px; padding-bottom: 28px; }
+      .intro-side { grid-template-columns: minmax(0, 1fr) auto; align-items: stretch; }
+      .ambient { min-height: 140px; }
+      .summary { display: flex; align-items: center; gap: 12px; width: auto; min-width: 154px; }
+      .summary-number { margin: 0; }
+      .grid { grid-template-columns: 1fr; }
+      .project.leaderboard { grid-column: auto; }
+      .leaderboard-grid { grid-template-columns: 1fr; }
+      .section { margin-top: 34px; }
+      .project { min-height: 214px; padding: 20px; }
+      .project::after { left: 20px; }
+      .directory.view-list .project {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 11px 16px;
+        padding: 16px;
+      }
+      .directory.view-list .project::after { left: 16px; }
+      .directory.view-list .project-top,
+      .directory.view-list .project-main { grid-column: 1 / -1; }
+      .directory.view-list .meta { grid-column: 1; }
+      .directory.view-list .project-link,
+      .directory.view-list .private-note { grid-column: 2; }
+      footer { flex-direction: column; gap: 6px; }
+    }
+
+    @media (max-width: 520px) {
+      .intro-side { grid-template-columns: 1fr; }
+      .summary { width: fit-content; }
+      .header-actions { width: 100%; margin-left: 0; }
+      .view-switch { flex: 1 1 auto; }
+      .view-button { flex: 1 1 50%; }
+      .command-trigger { flex: 1 1 auto; justify-content: center; }
+      .command-scopes { grid-template-columns: 1fr; }
+      .palette-backdrop { padding: 16px 10px; }
+      .command-panel { max-height: calc(100vh - 32px); }
+      .command-results { max-height: calc(100vh - 292px); }
+    }
+
+    @media (max-width: 430px) {
+      h1 { font-size: clamp(2.35rem, 12vw, 3.2rem); }
+      .filter-label { width: 100%; margin: 0 0 3px; }
+      .project-bottom { align-items: stretch; flex-direction: column; }
+      .project-link { justify-content: center; width: 100%; }
+      .private-note { max-width: none; text-align: left; }
+      .directory.view-list .project { grid-template-columns: 1fr; }
+      .directory.view-list .meta,
+      .directory.view-list .project-link,
+      .directory.view-list .private-note { grid-column: 1; }
+      .directory.view-list .project-link { width: 100%; }
+    }
+
+    @media (max-width: 360px) {
+      .header-actions { align-items: stretch; flex-direction: column; }
+      .command-trigger { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="intro">
+      <div class="intro-copy">
+        <p class="edition">Directory · Updated Sep 27, 2026</p>
+        <h1>What’s live, what’s building, what stays reference.</h1>
+        <p class="lede">A clean front door into the tools and dashboards shaping the studio. Open a project, scan its status, or find the right source of truth.</p>
+      </div>
+      <div class="intro-side">
+        <div class="ambient" aria-hidden="true">
+          <svg viewBox="0 0 290 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hero-line" x1="34" y1="150" x2="254" y2="42" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#ef5358"/><stop offset="1" stop-color="#e5ae55"/>
+              </linearGradient>
+              <radialGradient id="hero-core"><stop stop-color="#efb95f" stop-opacity=".55"/><stop offset="1" stop-color="#ef5358" stop-opacity="0"/></radialGradient>
+            </defs>
+            <g opacity=".22" stroke="#fff">
+              <path d="M0 38H290M0 95H290M0 152H290"/><path d="M48 0V190M145 0V190M242 0V190"/>
+            </g>
+            <circle cx="145" cy="95" r="66" stroke="url(#hero-line)" stroke-width="1.2" opacity=".72"/>
+            <circle class="ambient-orbit" cx="145" cy="95" r="45" stroke="#e5ae55" stroke-width="1" stroke-dasharray="4 8" opacity=".66"/>
+            <path d="M31 139C63 139 69 72 102 72C131 72 128 121 158 121C190 121 195 50 258 50" stroke="url(#hero-line)" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="145" cy="95" r="39" fill="url(#hero-core)"/>
+            <circle cx="31" cy="139" r="4" fill="#ef5358"/><circle cx="258" cy="50" r="4" fill="#e5ae55"/>
+          </svg>
+        </div>
+        <aside class="summary" aria-label="Hub summary">
+          <span class="summary-number" id="openable-count">4</span>
+          <span class="summary-label">destinations<br />ready to open</span>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="filter-bar" aria-label="Filter projects by status">
+      <span class="filter-label">SHOW</span>
+      <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All <span class="filter-count">0</span></button>
+      <button class="filter-button" type="button" data-filter="live" aria-pressed="false">Live <span class="filter-count">0</span></button>
+      <button class="filter-button" type="button" data-filter="building" aria-pressed="false">Building <span class="filter-count">0</span></button>
+      <button class="filter-button" type="button" data-filter="reference" aria-pressed="false">Reference <span class="filter-count">0</span></button>
+      <button class="filter-button" type="button" data-filter="parked" aria-pressed="false">Parked <span class="filter-count">0</span></button>
+      <div class="header-actions">
+        <div class="view-switch" role="group" aria-label="Project view">
+          <button class="view-button" type="button" data-view="grid" aria-pressed="true">Grid</button>
+          <button class="view-button" type="button" data-view="list" aria-pressed="false">List</button>
+        </div>
+        <button class="command-trigger" id="command-trigger" type="button" aria-haspopup="dialog" aria-controls="command-palette">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Jump <kbd id="shortcut-hint">⌘K</kbd>
+        </button>
+      </div>
+    </nav>
+
+    <section class="status-band" aria-label="Visible projects by status">
+      <div class="status-stat" data-stat-status="live" style="--status-color:var(--green)"><span class="status-stat-number">0</span><span class="status-stat-label">Live</span></div>
+      <div class="status-stat" data-stat-status="building" style="--status-color:var(--gold)"><span class="status-stat-number">0</span><span class="status-stat-label">Building</span></div>
+      <div class="status-stat" data-stat-status="reference" style="--status-color:var(--slate)"><span class="status-stat-number">0</span><span class="status-stat-label">Reference</span></div>
+      <div class="status-stat" data-stat-status="parked" style="--status-color:var(--red)"><span class="status-stat-number">0</span><span class="status-stat-label">Parked</span></div>
+    </section>
+
+    <div class="directory" id="directory" aria-live="polite"></div>
+
+    <footer>
+      <span>Last updated 2026-09-27</span>
+      <span>Hub v0.1 · Muse</span>
+    </footer>
+  </main>
+
+  <div class="palette-backdrop hidden" id="command-palette" aria-hidden="true">
+    <section class="command-panel" role="dialog" aria-modal="true" aria-label="Jump to project">
+      <div class="command-head">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input class="command-input" id="command-input" type="search" autocomplete="off" placeholder="Search projects, owners, or tags…" aria-label="Search projects" aria-controls="command-results" aria-autocomplete="list" />
+        <button class="command-close" id="command-close" type="button" aria-label="Close command palette">ESC</button>
+      </div>
+      <div class="command-scopes">
+        <label class="scope-field"><span>SECTION</span><select id="command-section" aria-label="Filter command results by section"></select></label>
+        <label class="scope-field"><span>STATUS</span><select id="command-status" aria-label="Filter command results by status"></select></label>
+      </div>
+      <ul class="command-results" id="command-results" role="listbox" aria-label="Project results"></ul>
+      <div class="command-foot"><span>↑↓ navigate</span><span>↵ jump</span><span>esc close</span><span>tab moves controls</span></div>
+    </section>
+  </div>
+
+  <script>
+    // === SINGLE SOURCE OF TRUTH: CARD DATA ===
+    // Add, remove, reorder, or update cards only in this array; every view, count, badge, section, search result, and link renders from it.
+    const PROJECTS = [
+      {
+        section: "Live tools",
+        title: "Skill Catalog",
+        description: "Browse the working skill library, roles, sources, and verification state.",
+        status: "live",
+        visibility: "link-only",
+        href: "https://muse.ai/s/skill-catalog-fxd6l9xwhxaxwxtj",
+        updated: "2026-09-22",
+        owner: "DigitalStudioz",
+        tags: ["skills", "systems", "reference"]
+      },
+      {
+        section: "Live tools",
+        title: "API Key Organizer",
+        description: "Static prototype for organizing fictional key records and export formats safely.",
+        status: "live",
+        visibility: "link-only",
+        href: "https://muse.ai/s/api-key-organizer-qxv6lbxy3qgtxg",
+        updated: "2026-09-22",
+        owner: "DigitalStudioz",
+        tags: ["prototype", "developer", "utility"]
+      },
+      {
+        section: "Live tools",
+        title: "LinkLabz",
+        description: "Review, compare, and organize useful links on the public link review board.",
+        status: "live",
+        visibility: "public",
+        href: "https://muse.ai/s/link-review-board-ec6lxgxhuxx4xf6",
+        updated: "2026-09-25",
+        owner: "DigitalStudioz",
+        tags: ["links", "reviews", "board"]
+      },
+      {
+        section: "Studio dashboards",
+        title: "AI Subscriptions Dashboard",
+        description: "See the studio’s AI tools and subscription landscape in one focused view.",
+        status: "live",
+        visibility: "link-only",
+        href: "https://muse.ai/s/my-subscriptions-kc6laag4qr0",
+        updated: "2026-09-22",
+        owner: "DigitalStudioz",
+        tags: ["subscriptions", "stack", "dashboard"]
+      },
+      {
+        section: "Studio dashboards",
+        title: "CreditLabz",
+        description: "Prototype dashboard for tracking API credit balances and subscription costs while the live system is in build.",
+        status: "building",
+        visibility: "prototype",
+        href: "https://muse.ai/s/api-credit-dashboard-dy6mxeuysxv7xz",
+        updated: "2026-09-25",
+        owner: "DigitalStudioz",
+        tags: ["prototype", "in-build", "credits"]
+      },
+      {
+        section: "Studio dashboards",
+        title: "Prime Time Master Prompts",
+        description: "The distilled master prompts from the MyStudioChannel Prime Time build — the one-shot flagship version and the five-phase iteration version.",
+        status: "reference",
+        visibility: "public",
+        href: "https://github.com/jonbeatz/Website-Templates/tree/main/.cursor/prompts",
+        updated: "2026-09-27",
+        owner: "DigitalStudioz",
+        tags: ["prompts", "website-build", "workflow"]
+      },
+      {
+        section: "Reference",
+        title: "Personal Skill Pack",
+        description: "North star for the JonBeatz and DigitalStudioz design language, patterns, and build standards.",
+        status: "reference",
+        visibility: "private",
+        href: null,
+        updated: "2026-09-22",
+        owner: "Jon",
+        tags: ["north-star", "design", "standards"]
+      },
+      {
+        section: "Reference",
+        title: "Video & Image Lab",
+        description: "The ComfyUI video and image pipeline: six HOLD video lanes, Qwen-Image lanes, per-lane recipes, and VRAM budgets.",
+        details: "Knowledge pack: JonBeatz Command Center repo · Per-lane recipes + VRAM budgets: Vader alongside ComfyUI",
+        status: "reference",
+        visibility: "internal-doc",
+        href: null,
+        note: "Internal reference · no public link",
+        updated: "2026-09-22",
+        owner: "JonBeatz",
+        tags: ["comfyui", "video-lab", "image-lab"]
+      },
+      {
+        section: "Reference",
+        title: "PromptLab",
+        description: "Prompt templates and the unified starter system for image, video, 3D, and exploded-view work.",
+        details: "Canonical home: JonBeatz Command Center repo",
+        status: "reference",
+        visibility: "internal-doc",
+        href: null,
+        note: "Internal reference · no public link",
+        updated: "2026-09-22",
+        owner: "JonBeatz",
+        tags: ["prompts", "templates", "systems"]
+      },
+      {
+        section: "Reference",
+        title: "Website-Build System",
+        description: "AI website-build playbook: lane 1 Divi 5 + AI, lane 2 screenshot/URL to custom WordPress theme, and 3D scroll-scrub web-delivery notes.",
+        details: "Canonical home: Website-Templates repo + JonBeatz Command Center",
+        status: "reference",
+        visibility: "internal-doc",
+        href: null,
+        note: "Internal reference · no public link",
+        updated: "2026-09-22",
+        owner: "DigitalStudioz",
+        tags: ["divi-5", "wordpress", "3d-web"]
+      },
+      {
+        section: "Reference",
+        title: "3D Lab",
+        description: "Image-to-3D playground for Hunyuan3D, Tripo, and TRELLIS finalists plus the exploded-view fast path.",
+        details: "Learning lab · ComfyUI · No project attached yet",
+        status: "reference",
+        visibility: "internal-doc",
+        href: null,
+        note: "Internal reference · no public link",
+        updated: "2026-09-22",
+        owner: "JonBeatz",
+        tags: ["3d", "comfyui", "exploded-view"]
+      },
+      {
+        section: "Reference",
+        title: "Model Leaderboard",
+        description: "Living record of what held up, what moved naturally, and which models earned the next production slot.",
+        details: "Verified HOLD results · qualitative verdicts and wall times · formal numeric scores not logged yet",
+        status: "reference",
+        visibility: "public",
+        href: null,
+        note: "Living public record",
+        updated: "2026-09-22",
+        owner: "JonBeatz",
+        tags: ["models", "benchmarks", "production"],
+        leaderboard: {
+          video: [
+            { name: "wan22", note: "Default / proven · pond gate 81f · 16fps · 832×480 · 25:36 wall · ~13.8GB VRAM" },
+            { name: "h3 MiniMax", note: "Strongest character hold · 7:30 · 24fps + AAC" },
+            { name: "ltx23", note: "Most lifelike micro-motion · 4:30 · 24fps + AAC" },
+            { name: "lightx2v", note: "Daily speed lane · 8:05" },
+            { name: "framepack", note: "HOLD lane · 14:51" }
+          ],
+          image: [
+            { name: "Qwen-Image 2512", note: "T2I · Apache 2.0 · commercial-safe" },
+            { name: "Qwen-Image Edit 2511", note: "Edit keeper" },
+            { name: "Klein 9B", note: "Verified image model" },
+            { name: "Open slot", note: "Next verified image model", open: true },
+            { name: "Open slot", note: "Next verified image model", open: true }
+          ]
+        }
+      },
+      {
+        section: "Parked / ideas",
+        title: "Spitball Parking Lot",
+        description: "The living source of truth for wedges, experiments, success criteria, and kill conditions.",
+        status: "parked",
+        visibility: "link-only",
+        href: "https://docs.google.com/document/d/1RRw58E2vwq4HQqAh4ulCKMHlIvlE4rrxQgolImI6gVU/edit",
+        updated: "2026-09-22",
+        owner: "Jon + Ravyn",
+        tags: ["ideas", "experiments", "source-of-truth"]
+      }
+    ];
+
+    const SECTIONS = ["Live tools", "Studio dashboards", "In progress", "Reference", "Parked / ideas"];
+    const STATUS_COLORS = {
+      live: "var(--green)",
+      building: "var(--gold)",
+      reference: "var(--slate)",
+      parked: "var(--red)"
+    };
+
+    const directory = document.getElementById("directory");
+    const buttons = Array.from(document.querySelectorAll(".filter-button"));
+    const viewButtons = Array.from(document.querySelectorAll(".view-button"));
+    const statusStats = Array.from(document.querySelectorAll(".status-stat"));
+    const palette = document.getElementById("command-palette");
+    const commandTrigger = document.getElementById("command-trigger");
+    const commandInput = document.getElementById("command-input");
+    const commandClose = document.getElementById("command-close");
+    const commandSection = document.getElementById("command-section");
+    const commandStatus = document.getElementById("command-status");
+    const commandResults = document.getElementById("command-results");
+    const shortcutHint = document.getElementById("shortcut-hint");
+    let activeFilter = "all";
+    let activeView = "grid";
+    let activeCommandIndex = 0;
+    let commandMatches = [];
+    let lastFocused = null;
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, function(char) {
+        return {"&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;"}[char];
+      });
+    }
+
+    function sigilMarkup(project, sourceIndex) {
+      const paths = [
+        '<circle cx="160" cy="56" r="29"/><path d="M55 82 112 26l46 62 53-54 54 48"/><circle cx="55" cy="82" r="5" fill="#ef5358" stroke="none"/><circle cx="265" cy="82" r="5" fill="#e5ae55" stroke="none"/>',
+        '<path d="M50 56h220M94 23v66M226 23v66" opacity=".35"/><path d="m83 75 38-38 39 38 39-38 38 38"/><circle cx="160" cy="56" r="18"/>',
+        '<circle cx="160" cy="56" r="39"/><circle cx="160" cy="56" r="23" stroke-dasharray="4 6"/><path d="M67 56h54m78 0h54M160 17v16m0 46v16"/><path d="m149 56 8 8 17-19"/>',
+        '<path d="M58 78c34-42 66-42 97 0 31-42 63-42 107 0"/><path d="M58 34c34 42 66 42 97 0 31 42 63 42 107 0" opacity=".42"/><circle cx="155" cy="56" r="7"/>',
+        '<path d="m160 16 44 26v52l-44 26-44-26V42l44-26Z"/><path d="m160 35 27 16v31l-27 16-27-16V51l27-16Z" stroke-dasharray="5 6"/><path d="M67 56h49m88 0h49"/>'
+      ];
+      const gradientId = "sigil-gradient-" + sourceIndex;
+      return '<div class="project-visual" aria-hidden="true"><svg viewBox="0 0 320 112" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs><linearGradient id="' + gradientId + '" x1="48" y1="94" x2="267" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#ef5358"/><stop offset="1" stop-color="#e5ae55"/></linearGradient></defs>' +
+        '<g opacity=".14" stroke="#fff"><path d="M0 28h320M0 56h320M0 84h320"/><path d="M80 0v112M160 0v112M240 0v112"/></g>' +
+        '<g stroke="url(#' + gradientId + ')" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + paths[sourceIndex % paths.length] + '</g>' +
+        '<circle cx="285" cy="20" r="2.5" fill="' + (project.status === "parked" ? "#ef5358" : "#e5ae55") + '"/></svg></div>';
+    }
+
+    function leaderboardMarkup(board) {
+      if (!board) return "";
+      function listMarkup(items) {
+        return '<ol class="model-list">' + items.map(function(item, index) {
+          return '<li class="model-row ' + (item.open ? "open" : "") + '">' +
+            '<span class="model-rank">' + String(index + 1).padStart(2, "0") + '</span>' +
+            '<span class="model-name">' + escapeHtml(item.name) + '</span>' +
+            '<span class="model-note">' + escapeHtml(item.note) + '</span></li>';
+        }).join("") + '</ol>';
+      }
+      return '<div class="leaderboard-grid" aria-label="Current model leaderboard">' +
+        '<section class="model-board"><h4 class="model-board-title">Video models <span>TOP 5 · HOLD</span></h4>' + listMarkup(board.video) + '</section>' +
+        '<section class="model-board"><h4 class="model-board-title">Image models <span>TOP 5</span></h4>' + listMarkup(board.image) + '</section>' +
+      '</div><p class="retired-line"><strong>Rotation rule:</strong> Updated as models change. When one is dethroned, it moves to a retired line with the model that replaced it. <strong>Retired:</strong> none yet.</p>';
+    }
+
+    function cardMarkup(project, displayIndex, sourceIndex) {
+      const tags = project.tags.map(function(tag) {
+        return '<span class="tag">' + escapeHtml(tag) + '</span>';
+      }).join("");
+
+      const action = project.href
+        ? '<a class="project-link" href="' + escapeHtml(project.href) + '" target="_blank" rel="noopener noreferrer" aria-label="Open ' + escapeHtml(project.title) + '">' +
+            'Open <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
+        : '<span class="private-note">' + escapeHtml(project.note || "Available through the private workspace") + '</span>';
+      const context = project.details ? '<p class="project-context">' + escapeHtml(project.details) + '</p>' : "";
+      const leaderboard = leaderboardMarkup(project.leaderboard);
+
+      return '<article class="project ' + (project.href ? "openable " : "") + (project.leaderboard ? "leaderboard" : "") + '" id="project-' + sourceIndex + '" tabindex="-1" data-status="' + escapeHtml(project.status) + '" style="--status-color:' + STATUS_COLORS[project.status] + '">' +
+        '<div class="project-top"><div class="badges">' +
+          '<span class="badge status">' + escapeHtml(project.status) + '</span>' +
+          '<span class="badge">' + escapeHtml(project.visibility) + '</span>' +
+        '</div><span class="card-index">' + String(displayIndex + 1).padStart(2, "0") + '</span></div>' +
+        sigilMarkup(project, sourceIndex) +
+        '<div class="project-main"><h3 class="project-title">' + escapeHtml(project.title) + '</h3>' +
+        '<p class="project-description">' + escapeHtml(project.description) + '</p>' +
+        context + leaderboard + '</div>' +
+        '<div class="project-bottom"><div class="meta">' +
+          '<div class="meta-line"><strong>Owner</strong><span>' + escapeHtml(project.owner) + '</span></div>' +
+          '<div class="meta-line"><strong>Updated</strong><span>' + escapeHtml(project.updated) + '</span></div>' +
+          '<div class="tags">' + tags + '</div>' +
+        '</div>' + action + '</div></article>';
+    }
+
+    function render(filter) {
+      directory.innerHTML = SECTIONS.map(function(sectionName) {
+        const allInSection = PROJECTS.filter(function(project) { return project.section === sectionName; });
+        const visible = allInSection.filter(function(project) { return filter === "all" || project.status === filter; });
+        const shouldShow = filter === "all" || visible.length > 0;
+        if (!shouldShow) return "";
+
+        const cards = visible.length
+          ? visible.map(function(project) {
+              const sourceIndex = PROJECTS.indexOf(project);
+              return cardMarkup(project, sourceIndex, sourceIndex);
+            }).join("")
+          : '<div class="empty-state"><strong>Nothing queued here.</strong> This lane stays clear until a project is actively building.</div>';
+        const sectionId = "section-" + sectionName.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
+
+        return '<section class="section" aria-labelledby="' + escapeHtml(sectionId) + '">' +
+          '<div class="section-heading">' +
+            '<h2 class="section-title" id="' + escapeHtml(sectionId) + '">' + escapeHtml(sectionName) + ' <span class="section-title-count">(' + visible.length + ')</span></h2>' +
+            '<span class="section-count">' + visible.length + (visible.length === 1 ? " entry" : " entries") + '</span>' +
+          '</div><div class="grid">' + cards + '</div></section>';
+      }).join("");
+    }
+
+    function setPageFilter(filter) {
+      activeFilter = filter;
+      buttons.forEach(function(item) { item.setAttribute("aria-pressed", String(item.dataset.filter === filter)); });
+      render(filter);
+      updateStatusStats(filter);
+    }
+
+    function setView(view) {
+      activeView = view;
+      directory.classList.toggle("view-list", view === "list");
+      viewButtons.forEach(function(item) { item.setAttribute("aria-pressed", String(item.dataset.view === view)); });
+    }
+
+    function updateStatusStats(filter) {
+      const visibleProjects = PROJECTS.filter(function(project) { return filter === "all" || project.status === filter; });
+      statusStats.forEach(function(stat) {
+        const status = stat.dataset.statStatus;
+        const count = visibleProjects.filter(function(project) { return project.status === status; }).length;
+        stat.querySelector(".status-stat-number").textContent = count;
+      });
+    }
+
+    function updateCounts() {
+      buttons.forEach(function(button) {
+        const filter = button.dataset.filter;
+        const count = filter === "all" ? PROJECTS.length : PROJECTS.filter(function(project) { return project.status === filter; }).length;
+        button.querySelector(".filter-count").textContent = count;
+      });
+    }
+
+    function fuzzyScore(text, query) {
+      if (!query) return 1;
+      const haystack = text.toLowerCase();
+      const needle = query.toLowerCase().trim();
+      if (haystack.includes(needle)) return 100 - haystack.indexOf(needle);
+      let cursor = 0;
+      let score = 0;
+      for (let i = 0; i < haystack.length && cursor < needle.length; i += 1) {
+        if (haystack[i] === needle[cursor]) {
+          score += i === 0 || /[\s/+-]/.test(haystack[i - 1]) ? 4 : 1;
+          cursor += 1;
+        }
+      }
+      return cursor === needle.length ? score : -1;
+    }
+
+    function getCommandMatches() {
+      const query = commandInput.value;
+      return PROJECTS.map(function(project, index) {
+        const text = [project.title, project.description, project.section, project.status, project.visibility, project.owner].concat(project.tags).join(" ");
+        return { project: project, index: index, score: fuzzyScore(text, query) };
+      }).filter(function(item) {
+        const sectionMatch = commandSection.value === "all" || item.project.section === commandSection.value;
+        const statusMatch = commandStatus.value === "all" || item.project.status === commandStatus.value;
+        return item.score >= 0 && sectionMatch && statusMatch;
+      }).sort(function(a, b) { return b.score - a.score || a.index - b.index; });
+    }
+
+    function selectCommand(index) {
+      if (!commandMatches.length) return;
+      activeCommandIndex = Math.max(0, Math.min(index, commandMatches.length - 1));
+      Array.from(commandResults.querySelectorAll(".command-option")).forEach(function(option, optionIndex) {
+        const selected = optionIndex === activeCommandIndex;
+        option.setAttribute("aria-selected", String(selected));
+        if (selected) {
+          commandInput.setAttribute("aria-activedescendant", option.id);
+          option.scrollIntoView({ block: "nearest" });
+        }
+      });
+    }
+
+    function renderCommands() {
+      commandMatches = getCommandMatches();
+      activeCommandIndex = 0;
+      if (!commandMatches.length) {
+        commandResults.innerHTML = '<li class="command-empty">No projects match those filters.</li>';
+        commandInput.removeAttribute("aria-activedescendant");
+        return;
+      }
+      commandResults.innerHTML = commandMatches.map(function(item, index) {
+        return '<li><button class="command-option" id="command-option-' + index + '" type="button" role="option" aria-selected="' + (index === 0 ? "true" : "false") + '" data-result-index="' + index + '">' +
+          '<span class="command-option-title">' + escapeHtml(item.project.title) + '</span>' +
+          '<span class="command-option-section">' + escapeHtml(item.project.section) + ' · ' + escapeHtml(item.project.visibility) + '</span>' +
+          '<span class="command-option-status">' + escapeHtml(item.project.status) + '</span></button></li>';
+      }).join("");
+      commandInput.setAttribute("aria-activedescendant", "command-option-0");
+    }
+
+    function openPalette() {
+      lastFocused = document.activeElement;
+      palette.classList.remove("hidden");
+      palette.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      renderCommands();
+      window.requestAnimationFrame(function() { commandInput.focus(); commandInput.select(); });
+    }
+
+    function closePalette() {
+      palette.classList.add("hidden");
+      palette.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+    }
+
+    function runCommand(resultIndex) {
+      const match = commandMatches[resultIndex];
+      if (!match) return;
+      closePalette();
+      setPageFilter("all");
+      window.requestAnimationFrame(function() {
+        const card = document.getElementById("project-" + match.index);
+        if (card) {
+          card.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+          card.focus({ preventScroll: true });
+        }
+      });
+    }
+
+    commandSection.innerHTML = '<option value="all">All sections</option>' + SECTIONS.map(function(section) { return '<option value="' + escapeHtml(section) + '">' + escapeHtml(section) + '</option>'; }).join("");
+    commandStatus.innerHTML = '<option value="all">All statuses</option>' + Object.keys(STATUS_COLORS).map(function(status) { return '<option value="' + status + '">' + status.charAt(0).toUpperCase() + status.slice(1) + '</option>'; }).join("");
+
+    buttons.forEach(function(button) {
+      button.addEventListener("click", function() { setPageFilter(button.dataset.filter); });
+    });
+
+    viewButtons.forEach(function(button) {
+      button.addEventListener("click", function() { setView(button.dataset.view); });
+    });
+
+    const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
+    shortcutHint.textContent = /mac|iphone|ipad|ipod/i.test(platform) ? "⌘K" : "Ctrl+K";
+
+    commandTrigger.addEventListener("click", openPalette);
+    commandClose.addEventListener("click", closePalette);
+    commandInput.addEventListener("input", renderCommands);
+    commandSection.addEventListener("change", renderCommands);
+    commandStatus.addEventListener("change", renderCommands);
+    commandResults.addEventListener("click", function(event) {
+      const option = event.target.closest(".command-option");
+      if (option) runCommand(Number(option.dataset.resultIndex));
+    });
+    commandResults.addEventListener("mousemove", function(event) {
+      const option = event.target.closest(".command-option");
+      if (option) selectCommand(Number(option.dataset.resultIndex));
+    });
+    palette.addEventListener("click", function(event) { if (event.target === palette) closePalette(); });
+
+    document.addEventListener("keydown", function(event) {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        palette.classList.contains("hidden") ? openPalette() : closePalette();
+        return;
+      }
+      if (!palette.classList.contains("hidden") && event.key === "Escape") {
+        event.preventDefault();
+        closePalette();
+      }
+    });
+
+    commandInput.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowDown") { event.preventDefault(); selectCommand(activeCommandIndex + 1); }
+      if (event.key === "ArrowUp") { event.preventDefault(); selectCommand(activeCommandIndex - 1); }
+      if (event.key === "Home") { event.preventDefault(); selectCommand(0); }
+      if (event.key === "End") { event.preventDefault(); selectCommand(commandMatches.length - 1); }
+      if (event.key === "Enter") { event.preventDefault(); runCommand(activeCommandIndex); }
+    });
+
+    document.querySelector(".command-panel").addEventListener("keydown", function(event) {
+      if (event.key !== "Tab") return;
+      const focusable = Array.from(this.querySelectorAll('input, select, button:not([disabled])')).filter(function(element) { return element.offsetParent !== null; });
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+
+    document.getElementById("openable-count").textContent = PROJECTS.filter(function(project) { return Boolean(project.href); }).length;
+    updateCounts();
+    setView("grid");
+    setPageFilter("all");
+  </script>
+</body>
+</html>
