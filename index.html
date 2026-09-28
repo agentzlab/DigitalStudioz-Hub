@@ -44,7 +44,7 @@
     @keyframes pulse{50%{opacity:.55;box-shadow:0 0 28px #f0b84b}}
 
     .nav-wrap{position:sticky;top:0;z-index:100;border-bottom:1px solid transparent;transition:.2s ease}
-    .nav-wrap.scrolled{background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(16px);border-color:var(--line)}
+    .nav-wrap.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);border-color:var(--line)}/* NOTE: no backdrop-filter/transform/filter on .nav-wrap — it would become the containing block for the fixed mobile overlay and collapse it to header size */
     nav{min-height:var(--nav-h);display:flex;align-items:center;gap:30px}
     .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;letter-spacing:-.03em;white-space:nowrap;color:#f4efe4}
     .brand-word{font-size:18px}.brand-word b{color:#f0b84b;font-weight:800}
