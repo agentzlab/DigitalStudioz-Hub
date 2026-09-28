@@ -47,11 +47,11 @@
     .nav-wrap.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);border-color:var(--line)}/* NOTE: no backdrop-filter/transform/filter on .nav-wrap — it would become the containing block for the fixed mobile overlay and collapse it to header size */
     nav{min-height:var(--nav-h);display:flex;align-items:center;gap:30px}
     .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;letter-spacing:-.03em;white-space:nowrap;color:#f4efe4}
-    .brand-word{font-size:18px}.brand-word b{color:#f0b84b;font-weight:800}
+    .brand-word{font-size:18px}.brand-word b{background:linear-gradient(108deg,#fff0bd 0%,#f2c25b 42%,#d99b2d 76%,#f4d488 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#f1c35e;font-weight:800}
     .nav-links{margin-left:auto;display:flex;align-items:center;gap:6px}
     .nav-links a{min-height:44px;padding:0 13px;display:inline-flex;align-items:center;text-decoration:none;color:#d5cec1;font-size:14px;font-weight:600;border-radius:7px;text-shadow:0 1px 8px rgba(0,0,0,.8)}
     .nav-links a:hover,.nav-links a:focus-visible{color:#fff;background:rgba(18,18,20,.78)}
-    .nav-cta{background:var(--accent)!important;color:var(--accent-ink)!important;padding-inline:17px!important;margin-left:8px}
+    .nav-cta{background:#0b0b0d!important;border:1px solid rgba(240,184,75,.55)!important;padding-inline:17px!important;margin-left:8px}.nav-cta span{background:linear-gradient(108deg,#fff0bd 0%,#f2c25b 42%,#d99b2d 76%,#f4d488 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#f1c35e}
     .menu-groups,.menu-group,.menu-group-panel,.menu-group-links{display:contents}.menu-group-toggle,.nav-links>.menu-feature{display:none}
     .nav-toggle{display:none;margin-left:auto;position:relative;z-index:120;width:46px;height:46px;padding:0;border:1px solid rgba(240,184,75,.26);background:rgba(9,9,12,.78);color:#f0b84b;border-radius:7px;backdrop-filter:blur(14px);cursor:pointer}
     .nav-toggle-lines{width:19px;height:14px;display:block;position:relative;margin:auto}.nav-toggle-lines i{position:absolute;left:0;width:100%;height:1px;background:currentColor;transition:transform .24s ease,top .24s ease,opacity .2s ease}.nav-toggle-lines i:nth-child(1){top:0}.nav-toggle-lines i:nth-child(2){top:6px}.nav-toggle-lines i:nth-child(3){top:12px}.nav-toggle[aria-expanded="true"] .nav-toggle-lines i:nth-child(1){top:6px;transform:rotate(45deg)}.nav-toggle[aria-expanded="true"] .nav-toggle-lines i:nth-child(2){opacity:0}.nav-toggle[aria-expanded="true"] .nav-toggle-lines i:nth-child(3){top:6px;transform:rotate(-45deg)}
@@ -82,7 +82,7 @@
     .matrix-cell{min-height:92px;padding:13px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);border-radius:5px;color:#d8d1c4}
     .matrix-cell b{display:block;font:700 25px/1 "IBM Plex Mono",monospace;color:#f0b84b;margin-bottom:10px}
     .matrix-cell span{font:500 10px/1.3 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.07em}
-    .matrix-cell.live-cell{background:#f0b84b;color:#171004;border-color:#f0b84b}.matrix-cell.live-cell b{color:#171004}
+    .matrix-cell.live-cell{background:linear-gradient(108deg,#fff0bd 0%,#f2c25b 42%,#d99b2d 76%,#f4d488 100%);color:#171004;border-color:#f0b84b}.matrix-cell.live-cell b{color:#171004}
     .stat-strip{grid-column:1/-1;margin-top:42px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.14);background:rgba(13,13,15,.72);backdrop-filter:blur(12px)}
     .stat{padding:18px 22px;border-right:1px solid rgba(255,255,255,.12)}.stat:last-child{border:0}
     .stat b{display:block;color:#f0b84b;font:700 clamp(24px,3vw,34px)/1 "IBM Plex Mono",monospace}.stat span{display:block;margin-top:8px;color:#c9c2b6;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
@@ -170,7 +170,7 @@
           <div class="menu-group"><button class="menu-group-toggle" type="button" aria-expanded="false" aria-controls="menu-parked"><span>Parked</span><svg class="menu-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></button><div class="menu-group-panel" id="menu-parked"><div class="menu-group-links"><a href="#parked">Parked ideas</a></div></div></div>
         </div>
         <a class="menu-feature" href="#live-tools"><span><strong>Skill Catalog</strong><small>signal live · featured destination</small></span><span class="menu-feature-arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0b84b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span></a>
-        <a class="nav-cta" href="#directory">Open a tool</a>
+        <a class="nav-cta" href="#directory"><span>Open a tool</span></a>
       </div>
     </nav>
   </header>
